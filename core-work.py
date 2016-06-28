@@ -1,6 +1,6 @@
-__author__ = 'cobedien'
-
-
+__author__ = 'shaurobi'
+#http://api.openweathermap.org/data/2.5/weather?q=Sydney&APPID=83fcd7c8d13fa1ebfa85e29312efa126
+#http://api.openweathermap.org/data/2.5/weather?q=Sydney&AAPID=83fcd7c8d13fa1ebfa85e29312efa126
 import sys
 import json
 import requests
@@ -26,6 +26,13 @@ print(my_data)
 
 print ("")
 print ("===============================")
-url = "http://api.openweathermap.org/data/2.5/"
+web = "http://api.openweathermap.org/data/2.5/weather?"
 key = "83fcd7c8d13fa1ebfa85e29312efa126"
 city = "Sydney"
+
+url = web + "q=" + city + "&APPID=" + key
+print(url)
+
+value = requests.get(url)
+print(value.status_code)
+print(value.headers['main'])
