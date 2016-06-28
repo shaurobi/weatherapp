@@ -1,19 +1,10 @@
 __author__ = 'shaurobi'
-#http://api.openweathermap.org/data/2.5/weather?q=Sydney&APPID=83fcd7c8d13fa1ebfa85e29312efa126
-#http://api.openweathermap.org/data/2.5/weather?q=Sydney&AAPID=83fcd7c8d13fa1ebfa85e29312efa126
+
 import sys
 import json
 import requests
 
 my_headers = {'content-type': 'application/json-rpc'}
-url = "http://198.18.134.17/ins"
-username = "admin"
-password = "Cisco321"
-
-
-payload = [{'jsonrpc': '2.0', 'method': 'cli', 'params': ['show version',1], 'id': '1'}]
-my_data = json.dumps(payload)
-print(my_data)
 # response = requests.post(url, data=my_data, headers=my_headers, auth=(username, password))
 
 
@@ -24,15 +15,13 @@ print(my_data)
 #response = requests.post(url, data=my_data, headers=my_headers, auth=(username, password))
 #cpu_state_idle=response.json()['result']['body']['cpu_state_idle']
 
-print ("")
-print ("===============================")
 web = "http://api.openweathermap.org/data/2.5/weather?"
 key = "83fcd7c8d13fa1ebfa85e29312efa126"
 city = "Sydney"
 
-url = web + "q=" + city + "&APPID=" + key
-print(url)
+url = web + "q=" + city + "&APPID=" + key + "&units=metric"
 
 value = requests.get(url)
 print(value.status_code)
-print(value.headers['main'])
+print(value.json()['main']['temp'])
+test = value.json()
